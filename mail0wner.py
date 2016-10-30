@@ -10,7 +10,7 @@ def packet_callback(packet):
             print "[*] %s" % packet[TCP].payload
 
 
-print('[*] Running for 100 seconds...
+print('[*] Running for 100 seconds...')
 
     
     #start sniffer
