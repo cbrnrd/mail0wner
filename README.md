@@ -1,4 +1,5 @@
 # mail0wner
+[![Code Climate](https://codeclimate.com/github/thecarterb/mail0wner/badges/gpa.svg)](https://codeclimate.com/github/thecarterb/mail0wner)
 
 Author: Carter Brainerd
 
