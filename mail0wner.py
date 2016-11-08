@@ -20,7 +20,7 @@ if len(args) < 2:
 
 OK_GREEN = "\033[92m"
 OK_BLUE = "\033[94m"
-WARNING = "\033[93m"
+ERR = "\033[91m"
 ENDC = "\033[0m"
 
 #handle colors
@@ -29,7 +29,7 @@ def printMsg(s):
 def printGood(s):
     print(OK_GREEN + "[*]" + ENDC + " " + s)
 def printErr(s):
-    print(WARNING + "[!]" + ENDC + " " + s)
+    print(ERR + "[!]" + ENDC + " " + s)
 
 #packet callback
 def packet_callback(packet):
