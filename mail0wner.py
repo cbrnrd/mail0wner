@@ -8,7 +8,7 @@ requests.packages.urllib3.disable_warnings()
 
 parser = OptionParser(usage="usage: sudo %prog [options]")
 parser.add_option("-t", "--time", action="store", dest="time", default=100, type=int, help="Total time to sniff packets.")
-parser.add_option("-i", "-interface", action="store", dest="iface", default="wlan0", help="Interface to use. Default: wlan0.")
+parser.add_option("-i", "--interface", action="store", dest="iface", default="wlan0", help="Interface to use. Default: wlan0.")
 (options, args) = parser.parse_args()
 if len(args) < 2:
     interface = options.iface
