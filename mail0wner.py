@@ -24,11 +24,11 @@ WARNING = "\033[93m"
 ENDC = "\033[0m"
 
 #handle colors
-def printMsg(String s):
+def printMsg(s):
     print(OK_BLUE + "[*]" + ENDC + " " + s)
-def printGood(String s):
+def printGood(s):
     print(OK_GREEN + "[*]" + ENDC + " " + s)
-def printErr(String s):
+def printErr(s):
     print(WARNING + "[!]" + ENDC + " " + s)
 
 #packet callback
