@@ -1,6 +1,10 @@
 #!/bin/bash
 clear
-
+if [ "$(id -u)" != "0" ]; then
+        echo "Run this script as root!"
+        echo "Exiting..."
+        exit 1
+fi
 echo "If there are any error messages concerning installs, install whatever they tell you to install \nusing sudo apt-get"
 
 echo "Installing pip"
