@@ -24,5 +24,5 @@ print('[*] Running for %i seconds...' % options.time)
     #port 110 = POP3
     #port 143 = IMAP
     #port 25  = SMTP
-print("[!] Scanner has finished after %i seconds." 5 options.time)
+print("[!] Scanner has finished after %i seconds." % options.time)
 exit(0)
