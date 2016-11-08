@@ -8,11 +8,11 @@ requests.packages.urllib3.disable_warnings()
 
 parser = OptionParser(usage="usage: sudo %prog [options]")
 parser.add_option("-t", "--time", action="store", dest="time", default=100, type=int, help="Total time to sniff packets.")
-parser.add_options("-i", "-interface", action="store", dest="iface", default="wlan0", help="Interface to use. Default: wlan0.")
+parser.add_option("-i", "-interface", action="store", dest="iface", default="wlan0", help="Interface to use. Default: wlan0.")
 (options, args) = parser.parse_args()
-
-intface = options.iface
-time = options.time
+if len(args) < 2:
+    interface = options.iface
+    time = options.time
 
 
 #packet callback
@@ -28,7 +28,7 @@ print('[*] Running for %i seconds...' % options.time)
 
 
 #start sniffer
-sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=time, iface=intface)
+sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=time, iface=interface)
 #port 110 = POP3
 #port 143 = IMAP
 #port 25  = SMTP
