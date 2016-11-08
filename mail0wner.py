@@ -19,10 +19,10 @@ def packet_callback(packet):
 print('[*] Running for %i seconds...' % options.time)
 
 
-    #start sniffer
-    sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=options.time)
-    #port 110 = POP3
-    #port 143 = IMAP
-    #port 25  = SMTP
+#start sniffer
+sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=options.time)
+#port 110 = POP3
+#port 143 = IMAP
+#port 25  = SMTP
 print("[!] Scanner has finished after %i seconds." % options.time)
 exit(0)
