@@ -39,9 +39,9 @@ def packet_callback(packet):
             printGood("Server: %s" % packet[IP].dst)
             printGood("%s" % packet[TCP].payload)
 try:
-    printMsg("Running for %i seconds..." % options.time)
     #start sniffer
     sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=time, iface=interface)
+    printMsg("Running for %i seconds..." % options.time)
     #port 110 = POP3
     #port 143 = IMAP
     #port 25  = SMTP
