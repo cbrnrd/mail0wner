@@ -2,7 +2,7 @@ from scapy.all import *
 import time
 from optparse import OptionParser
 
-parser = OptionParser(usage="usage: sudo 5prog [options]")
+parser = OptionParser(usage="usage: sudo %prog [options]")
 parser.add_option("-t", "--time", action="store", dest="time", default=100, type=int, help="Total time to sniff packets.")
 (options, args) = parser.parse_args()
 
