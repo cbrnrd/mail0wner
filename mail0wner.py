@@ -1,3 +1,7 @@
+import logging
+logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
+logging.info("finished")
+logging.captureWarnings(True)
 from scapy.all import *
 import time
 from optparse import OptionParser
@@ -13,6 +17,7 @@ parser.add_option("-i", "--interface", action="store", dest="iface", default="wl
 if len(args) < 2:
     interface = options.iface
     time = options.time
+
 
 #packet callback
 def packet_callback(packet):
