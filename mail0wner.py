@@ -14,7 +14,6 @@ if len(args) < 2:
     interface = options.iface
     time = options.time
 
-
 #packet callback
 def packet_callback(packet):
     if packet[TCP].payload:
@@ -23,14 +22,15 @@ def packet_callback(packet):
             print "[*] Server: %s" % packet[IP].dst
             print "[*] %s" % packet[TCP].payload
 
+try:
 
-print('[*] Running for %i seconds...' % options.time)
-
-
-#start sniffer
-sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=time, iface=interface)
-#port 110 = POP3
-#port 143 = IMAP
-#port 25  = SMTP
-print("[!] Scanner has finished after %i seconds." % options.time)
+    print('[*] Running for %i seconds...' % options.time)
+    #start sniffer
+    sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=time, iface=interface)
+    #port 110 = POP3
+    #port 143 = IMAP
+    #port 25  = SMTP
+    print("[!] Scanner has finished after %i seconds." % options.time)
+except OSError as e: #catch unknown interface OSError
+    print "Unknown interface: %s" % options.iface
 exit(0)
