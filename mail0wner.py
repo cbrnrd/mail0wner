@@ -14,9 +14,6 @@ parser = OptionParser(usage="usage: sudo %prog [options]")
 parser.add_option("-t", "--time", action="store", dest="time", default=100, type=int, help="Total time to sniff packets.")
 parser.add_option("-i", "--interface", action="store", dest="iface", default="wlan0", help="Interface to use. Default: wlan0.")
 (options, args) = parser.parse_args()
-if len(args) < 2:
-    interface = options.iface
-    time = options.time
 
 OK_GREEN = "\033[92m"
 OK_BLUE = "\033[94m"
@@ -40,7 +37,7 @@ def packet_callback(packet):
             printGood("%s" % packet[TCP].payload)
 try:
     #start sniffer
-    sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=time, iface=interface)
+    sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=options.time, iface=options.iface)
     printMsg("Running for %i seconds..." % options.time)
     #port 110 = POP3
     #port 143 = IMAP
