@@ -39,10 +39,13 @@ try:
     #start sniffer
     printMsg("Starting Sniffer")
     printMsg("Running for %i seconds..." % options.time)
-    sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=options.time, iface=options.iface)
-    #port 110 = POP3
-    #port 143 = IMAP
-    #port 25  = SMTP
+    try:
+        sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=options.time, iface=options.iface)
+        #port 110 = POP3
+        #port 143 = IMAP
+        #port 25  = SMTP
+    except socket.error as se:
+        printErr("Couldn't start scanner. Try running as root")
     printMsg("Scanner has finished after %i seconds." % options.time)
     exit(0)
 except OSError as e: #catch unknown interface OSError
