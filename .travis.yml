@@ -6,5 +6,6 @@ install:
   - pip install scapy
   - sudo apt-get install libpcap-dev  
   - pip install pypcap
+  - pip install requests
 
 script: python mail0wner.py -t 10 -i eth0
