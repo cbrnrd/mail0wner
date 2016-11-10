@@ -4,6 +4,7 @@ python:
     
 install: 
   - pip install scapy
-  - pip install pypcap
   - apt-get install libpcap-dev  
+  - pip install pypcap
+
 script: python mail0wner.py -t 10 -i eth0
