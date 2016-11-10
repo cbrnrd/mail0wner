@@ -28,6 +28,21 @@ def printGood(s):
 def printErr(s):
     print(ERR + "[!]" + ENDC + " " + s)
 
+def banner():
+    banner = """
+███╗   ███╗ █████╗ ██╗██╗      ██████╗ ██╗    ██╗███╗   ██╗███████╗██████╗ 
+████╗ ████║██╔══██╗██║██║     ██╔═████╗██║    ██║████╗  ██║██╔════╝██╔══██╗
+██╔████╔██║███████║██║██║     ██║██╔██║██║ █╗ ██║██╔██╗ ██║█████╗  ██████╔╝
+██║╚██╔╝██║██╔══██║██║██║     ████╔╝██║██║███╗██║██║╚██╗██║██╔══╝  ██╔══██╗
+██║ ╚═╝ ██║██║  ██║██║███████╗╚██████╔╝╚███╔███╔╝██║ ╚████║███████╗██║  ██║
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
+By: Carter Brainerd <https://github.com/thecarterb/>
+\n\n
+"""
+    print(banner)
+                                                                           
+          
+    
 #packet callback
 def packet_callback(packet):
     if packet[TCP].payload:
@@ -35,6 +50,7 @@ def packet_callback(packet):
         if "user" in mail_packet.lower() or "pass" in mail_packet.lower():
             printGood("Server: %s" % packet[IP].dst)
             printGood("%s" % packet[TCP].payload)
+banner()
 try:
     #start sniffer
     printMsg("Starting Sniffer")
