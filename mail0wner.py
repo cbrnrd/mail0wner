@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 logging.info("finished")
