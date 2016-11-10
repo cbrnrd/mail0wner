@@ -8,4 +8,4 @@ install:
   - pip install pypcap
   - pip install requests
 
-script: python mail0wner.py -t 10 -i eth0
+script: sudo python mail0wner.py -t 10 -i eth0
