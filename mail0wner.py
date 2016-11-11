@@ -66,5 +66,5 @@ try:
     printMsg("Scanner has finished after %i seconds." % options.time)
     exit(0)
 except OSError as e: #catch unknown interface OSError
-    printErr("Unknown interface: %s. (use the -i switch to specify an interface)" % options.iface)
+    printErr("Unknown interface: %s. (use the -i switch to specify an interface or run as sudo)" % options.iface)
     exit(1)
