@@ -45,7 +45,7 @@ def banner():
 ██║╚██╔╝██║██╔══██║██║██║     ████╔╝██║██║███╗██║██║╚██╗██║██╔══╝  ██╔══██╗
 ██║ ╚═╝ ██║██║  ██║██║███████╗╚██████╔╝╚███╔███╔╝██║ ╚████║███████╗██║  ██║
 ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
-By: Carter Brainerd <https://github.com/thecarterb/>
+By: 0xCB-0xDC <https://github.com/0xCB-0xDC/>
 \n
 """
     print(banner)
@@ -56,8 +56,7 @@ def banner2():
  _____ ___|_| |   |_ _ _ ___ ___ ___
 |     | .'| | | | | | | |   | -_|  _|
 |_|_|_|__,|_|_|___|_____|_|_|___|_|
-By: Carter Brainerd <https://github.com/thecarterb/>
-    """
+By: 0xCB-0xDC <https://github.com/0xCB-0xDC/>    """
     print(banner2x)
 
 def banner3():
@@ -72,8 +71,7 @@ def banner3():
 ,dP   8I   8I   Yb,,d8,   ,d8b,_,88,_,d8b,_ ,d8,  ,d8,  ,8I ,dP   8I   Yb, `YbadP\' ,dP     Y8,
 8P'   8I   8I   `Y8P"Y8888P"`Y88P""Y88P'"Y88P""Y88P""Y88P"  8P'   8I   `Y8888P"Y8888P      `Y8
 
- By: Carter Brainerd <https://github.com/thecarterb/>
-"""
+By: 0xCB-0xDC <https://github.com/0xCB-0xDC/>"""
     print(banner3x)
 
 def get_random_banner():
