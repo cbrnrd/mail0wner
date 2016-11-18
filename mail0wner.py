@@ -61,16 +61,13 @@ By: rndmaccess <https://github.com/rndmaccess/>    """
 
 def banner3():
     banner3x = """
-                                      ,dPYb,
-                                      IP'`Yb
-                                 gg   I8  8I
-                                 \"\"   I8  8'
-  ,ggg,,ggg,,ggg,     ,gggg,gg   gg   I8 dP  gg    gg    gg   ,ggg,,ggg,    ,ggg,    ,gggggg,
- ,8\" \"8P\" \"8P\" \"8,   dP\"  \"Y8I   88   I8dP   I8    I8    88bg,8\" \"8P\" \"8,  i8\" \"8i   dP\"\"\"\"8I
- I8   8I   8I   8I  i8'    ,8I   88   I8P    I8    I8    8I  I8   8I   8I  I8, ,8I  ,8'    8I
-,dP   8I   8I   Yb,,d8,   ,d8b,_,88,_,d8b,_ ,d8,  ,d8,  ,8I ,dP   8I   Yb, `YbadP\' ,dP     Y8,
-8P'   8I   8I   `Y8P"Y8888P"`Y88P""Y88P'"Y88P""Y88P""Y88P"  8P'   8I   `Y8888P"Y8888P      `Y8
-
+                          ___       __                                       
+                     __ /\_ \    /'__`\                                     
+  ___ ___      __   /\_\\//\ \  /\ \/\ \  __  __  __    ___      __   _ __  
+/' __` __`\  /'__`\ \/\ \ \ \ \ \ \ \ \ \/\ \/\ \/\ \ /' _ `\  /'__`\/\`'__\
+/\ \/\ \/\ \/\ \L\.\_\ \ \ \_\ \_\ \ \_\ \ \ \_/ \_/ \/\ \/\ \/\  __/\ \ \/ 
+\ \_\ \_\ \_\ \__/.\_\\ \_\/\____\\ \____/\ \___x___/'\ \_\ \_\ \____\\ \_\ 
+ \/_/\/_/\/_/\/__/\/_/ \/_/\/____/ \/___/  \/__//__/   \/_/\/_/\/____/ \/_/ 
 By: rndmaccess <https://github.com/rndmaccess/>"""
     print(banner3x)
 
