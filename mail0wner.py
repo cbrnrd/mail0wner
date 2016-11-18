@@ -91,6 +91,9 @@ def packet_callback(packet):
 
 def sniffer(): # main function that starts sniffer
     try:
+	if 'mon' in iface:
+	    printErr("Monitor mode cards are not supported. Please use another interface.")
+	    exit(1)
         #start sniffer
         printMsg("Starting Sniffer on interface: " + "\033[93m" + iface + "\033[0m")
         time.sleep(1)
