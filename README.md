@@ -1,7 +1,7 @@
 # mail0wner
 [![Code Climate](https://codeclimate.com/github/thecarterb/mail0wner/badges/gpa.svg)](https://codeclimate.com/github/thecarterb/mail0wner)
 
-Author: Carter Brainerd
+Author: rndmaccess
 
 mail0wner is a small python script to get plaintext mail creds from a mail server on a network 
 using [scapy](http://www.secdev.org/projects/scapy/)
