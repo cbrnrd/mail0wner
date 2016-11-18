@@ -19,7 +19,7 @@ parser = OptionParser(usage="usage: sudo %prog [options]")
 parser.add_option("-t", "--time", action="store", dest="time", default=100, type=int, help="Total time to sniff packets. Default: 100")
 parser.add_option("-i", "--interface", action="store", dest="iface", default="wlan0", help="Interface to use. Default: wlan0.")
 parser.add_option("-l", "--list-interfaces", action="store_true", dest="list", default=False, help="List usable interfaces and exit.")
-parser.add_option("-f", "--file", action=store, dest="infile", default=None, help="Read packets from a file") #in testing
+parser.add_option("-f", "--file", action="store", dest="infile", default=None, help="Read packets from a file") #in testing
 (options, args) = parser.parse_args()
 
 iface = options.iface
@@ -125,8 +125,14 @@ def main():
             print ifaces
             exit(0)
 	elif options.infile != None:
+		print "\n"
+		printMsg("Reading packets from \033[93m" + options.infile + "\033[0m"
 		file = rdpcap(options.infile)
-		print file
+		if file == None; #might cause problems
+		    printErr("No packets in file!")
+		else:
+		    print file
+		    exit(0)
         else:
             get_random_banner()
             sniffer() # call sniffer function
