@@ -45,7 +45,7 @@ def banner():
 ██║╚██╔╝██║██╔══██║██║██║     ████╔╝██║██║███╗██║██║╚██╗██║██╔══╝  ██╔══██╗
 ██║ ╚═╝ ██║██║  ██║██║███████╗╚██████╔╝╚███╔███╔╝██║ ╚████║███████╗██║  ██║
 ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
-By: 0xCB-0xDC <https://github.com/0xCB-0xDC/>
+By: rndmaccess <https://github.com/rndmaccess/>
 \n
 """
     print(banner)
@@ -56,7 +56,7 @@ def banner2():
  _____ ___|_| |   |_ _ _ ___ ___ ___
 |     | .'| | | | | | | |   | -_|  _|
 |_|_|_|__,|_|_|___|_____|_|_|___|_|
-By: 0xCB-0xDC <https://github.com/0xCB-0xDC/>    """
+By: rndmaccess <https://github.com/rndmaccess/>    """
     print(banner2x)
 
 def banner3():
@@ -71,7 +71,7 @@ def banner3():
 ,dP   8I   8I   Yb,,d8,   ,d8b,_,88,_,d8b,_ ,d8,  ,d8,  ,8I ,dP   8I   Yb, `YbadP\' ,dP     Y8,
 8P'   8I   8I   `Y8P"Y8888P"`Y88P""Y88P'"Y88P""Y88P""Y88P"  8P'   8I   `Y8888P"Y8888P      `Y8
 
-By: 0xCB-0xDC <https://github.com/0xCB-0xDC/>"""
+By: rndmaccess <https://github.com/rndmaccess/>"""
     print(banner3x)
 
 def get_random_banner():
@@ -95,7 +95,7 @@ def packet_callback(packet):
 def sniffer(): # main function that starts sniffer
     try:
         #start sniffer
-        printMsg("Starting Sniffer")
+        printMsg("Starting Sniffer on interface: " + "\033[93m" + iface + "\033[0m")
         time.sleep(1)
         printMsg("Running for %i seconds..." % options.time)
         try:
@@ -104,8 +104,8 @@ def sniffer(): # main function that starts sniffer
             #port 143 = IMAP
             #port 25  = SMTP
         except socket.error as se:
-            printErr("Couldn't start sniffer. Try running as root")
-        printMsg("Sniffer has finished after %i seconds." % options.time)
+            printErr("Couldn't start sniffer. Try running as root or using another interface")
+        printMsg("Sniffer has finished. Thanks for using mail0wner!")
         exit(0)
     except OSError as e: #catch unknown interface OSError
         printErr("Unknown interface: %s. (use the -i switch to specify an interface)" % options.iface)
