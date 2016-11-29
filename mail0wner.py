@@ -19,6 +19,7 @@ parser = OptionParser(usage="usage: sudo %prog [options]")
 parser.add_option("-t", "--time", action="store", dest="time", default=100, type=int, help="Total time to sniff packets. Default: 100")
 parser.add_option("-i", "--interface", action="store", dest="iface", default="eth0", help="Interface to use. Default: eth0.")
 parser.add_option("-l", "--list-interfaces", action="store_true", dest="list", default=False, help="List usable interfaces and exit.")
+parser.add_option("-q", "--quiet", action="store_true", dest="quietMode", default=False, help="Dont print the huge banners at runtime")
 #parser.add_option("-f", "--file", action="store", dest="infile", default=None, help="Read packets from a file") #in testing
 (options, args) = parser.parse_args()
 
@@ -134,7 +135,10 @@ def main():
 	#	    print file
 	#	    exit(0)
         else:
-            get_random_banner()
-            sniffer() # call sniffer function
+	    if options.quietMode == True:
+            	sniffer() # call sniffer function
+	    else;
+		get_random_banner()
+		sniffer()
 if __name__ == '__main__':
     main()
