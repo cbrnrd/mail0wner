@@ -13,3 +13,4 @@ echo "Installing pypcap and libpcap"
 apt-get install libpcap-dev
 apt-get install python-pypcap
 echo "You're ready to 0wn."
+exit 0
