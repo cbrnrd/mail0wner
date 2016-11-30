@@ -135,10 +135,10 @@ def main():
 	#	    print file
 	#	    exit(0)
         else:
-	    if options.quietMode == True:
-            	sniffer() # call sniffer function
-	    else;
-		get_random_banner()
-		sniffer()
+    	    if options.quietMode == True:
+                	sniffer() # call sniffer function
+    	    else:
+                get_random_banner()
+                sniffer()
 if __name__ == '__main__':
     main()
