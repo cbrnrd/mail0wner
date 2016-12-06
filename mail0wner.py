@@ -81,16 +81,28 @@ def banner3():
 By: rndmaccess <https://github.com/rndmaccess/>"""
     print(banner3x)
 
+def banner4():
+	banner4x = WARN + """
+	               .__.__  _______                             
+  _____ _____  |__|  | \   _  \__  _  ______   ___________ 
+ /     \\__  \ |  |  | /  /_\  \ \/ \/ /    \_/ __ \_  __ \
+|  Y Y  \/ __ \|  |  |_\  \_/   \     /   |  \  ___/|  | \/
+|__|_|  (____  /__|____/\_____  /\/\_/|___|  /\___  >__|   
+      \/     \/               \/           \/     \/     
+	""" + ENDC
+	print(banner4x)
 def get_random_banner():
-    bannernum = random.randrange(0,3)
+    bannernum = random.randrange(0,4)
     if bannernum == 0:
         banner()
     elif bannernum == 1:
         banner2()
     elif bannernum == 2:
         banner3()
+    elif bannernum == 3:
+        banner4()
     else:
-        banner()
+	banner()
 #packet callback for scapy (parsing packet)
 def packet_callback(packet):
     if packet[TCP].payload:
