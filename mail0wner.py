@@ -7,7 +7,7 @@ logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 logging.info("finished")
 logging.captureWarnings(True)
 from scapy.all import *
-import time
+from time import sleep as sleep
 import random
 import netifaces
 from optparse import OptionParser
@@ -118,7 +118,7 @@ def sniffer(): # main function that starts sniffer
 	    exit(1)
         #start sniffer
         printMsg("msg", "Starting Sniffer on interface: " + "\033[93m" + iface + "\033[0m")
-        time.sleep(1)
+        sleep(1)
         printMsg("msg", "Running for %i seconds..." % options.time)
         try:
             sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=timeout, iface=iface)
@@ -140,7 +140,7 @@ def main():
         if lstInt == True:
             banner2()
             printMsg("msg", "Getting interface information...")
-            time.sleep(1)
+            sleep(1)
             ifaces = netifaces.interfaces()
             printMsg("good", "Available interfaces are: ")
             print ifaces
