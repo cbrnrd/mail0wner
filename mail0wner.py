@@ -44,7 +44,7 @@ def printMsg(type, content):
 	elif type == "warn":
 		print(WARN + "[!]" + ENDC + " " + content)
 	else:
-		print("Unknown type for printMsg(). Options are \"msg\", \"err\", \"good\", or \"warn\".)
+		print("Unknown type for printMsg(). Options are \"msg\", \"err\", \"good\", or \"warn\".")
     
 
 def banner():
