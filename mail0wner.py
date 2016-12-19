@@ -11,8 +11,7 @@ from time import sleep as sleep
 import random
 import netifaces
 from optparse import OptionParser
-#supress annoying scapy warnings
-import requests.packages.urllib3
+import sys
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 
@@ -152,4 +151,7 @@ def main():
                 get_random_banner()
                 sniffer()
 if __name__ == '__main__':
+    if "win" in sys.platform:
+        print("Get off of Windows, go to Linux.")
+        exit(10)
     main()
