@@ -20,7 +20,10 @@ parser.add_option("-t", "--time", action="store", dest="time", default=100, type
 parser.add_option("-i", "--interface", action="store", dest="iface", default="eth0", help="Interface to use. Default: eth0.")
 parser.add_option("-l", "--list-interfaces", action="store_true", dest="list", default=False, help="List usable interfaces and exit.")
 parser.add_option("-q", "--quiet", action="store_true", dest="quietMode", default=False, help="Dont print the huge banners at runtime")
+parser.add_option("-v", "--verbose", action="store_true", dest="verbose", default=False, help="Show verbose messages")
 (options, args) = parser.parse_args()
+
+
 
 iface = options.iface
 timeout = options.time
@@ -42,8 +45,8 @@ def printMsg(type, content):
 	elif type == "warn":
 		print(WARN + "[!]" + ENDC + " " + content)
 	else:
-		print("Unknown type for printMsg(). Options are \"msg\", \"err\", \"good\", or \"warn\".")
-    
+		print("Unknown type for printMsg(). Options are \"msg\", \"err\", \"good\", or \"warn\". (Make an issue on GitHub if this appears)")
+
 
 def banner():
     banner = """\033[91m
@@ -81,12 +84,12 @@ By: rndmaccess <https://github.com/rndmaccess/>"""
 
 def banner4():
 	banner4x = WARN + """
-	               .__.__  _______                             
-  _____ _____  |__|  | \   _  \__  _  ______   ___________ 
+	               .__.__  _______
+  _____ _____  |__|  | \   _  \__  _  ______   ___________
  /     \\__  \ |  |  | /  /_\  \ \/ \/ /    \_/ __ \_  __ \
 |  Y Y  \/ __ \|  |  |_\  \_/   \     /   |  \  ___/|  | \/
 |__|_|  (____  /__|____/\_____  /\/\_/|___|  /\___  >__|   v0.3
-      \/     \/               \/           \/     \/     
+      \/     \/               \/           \/     \/
 	""" + ENDC
 	print(banner4x)
 def get_random_banner():
@@ -108,6 +111,9 @@ def packet_callback(packet):
         if "user" in mail_packet.lower() or "pass" in mail_packet.lower():
             printMsg("good", "Server: %s" % packet[IP].dst)
             printMsg("good", "%s" % packet[TCP].payload)
+			if options.verbose:
+				printMsg("msg", "Printing whole packet:")
+				print(packet) #TODO test this
 
 def sniffer(): # main function that starts sniffer
     try:
@@ -125,12 +131,24 @@ def sniffer(): # main function that starts sniffer
             #port 25  = SMTP
         except socket.error as se:
             printMsg("err", "Couldn't start sniffer. Try running as root or using another interface")
+			if options.verbose:
+				printMsg("msg", "Printing error message:")
+				print se.message
         printMsg("msg", "Sniffer has finished. Thanks for using mail0wner!")
         exit(0)
     except OSError as e: #catch unknown interface OSError
         printMsg("msg", "Unknown interface: %s. (use the -i switch to specify an interface)" % options.iface)
+		if options.verbose:
+			printMsg("msg", "Printing error message:")
+			print e.message
         exit(1)
 def main():
+	# check if -v and -q are used together
+	if options.verbose and options.quietMode:
+		printMsg("err", "Quiet mode and verbose mode can't be used together, running as normal...")
+		options.verbose = False
+		options.quietMode = False
+	# check if running as root
     if not os.geteuid() == 0:
         printMsg("err", "Script must be run as root. Exiting...")
         exit(-1)
@@ -143,7 +161,7 @@ def main():
             printMsg("good", "Available interfaces are: ")
             print ifaces
             exit(0)
-	
+
         else:
     	    if options.quietMode == True:
                 	sniffer() # call sniffer function
