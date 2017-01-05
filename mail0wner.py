@@ -131,16 +131,16 @@ def sniffer(): # main function that starts sniffer
             #port 25  = SMTP
         except socket.error as se:
             printMsg("err", "Couldn't start sniffer. Try running as root or using another interface")
-			if options.verbose:
-				printMsg("msg", "Printing error message:")
-				print se.message
+	   if options.verbose:
+	       printMsg("msg", "Printing error message:")
+	       print se.message
         printMsg("msg", "Sniffer has finished. Thanks for using mail0wner!")
         exit(0)
     except OSError as e: #catch unknown interface OSError
         printMsg("msg", "Unknown interface: %s. (use the -i switch to specify an interface)" % options.iface)
-		if options.verbose:
-			printMsg("msg", "Printing error message:")
-			print e.message
+	if options.verbose:
+		printMsg("msg", "Printing error message:")
+		print e.message
         exit(1)
 def main():
 	# check if -v and -q are used together
