@@ -111,9 +111,9 @@ def packet_callback(packet):
         if "user" in mail_packet.lower() or "pass" in mail_packet.lower():
             printMsg("good", "Server: %s" % packet[IP].dst)
             printMsg("good", "%s" % packet[TCP].payload)
-			if options.verbose:
-				printMsg("msg", "Printing whole packet:")
-				print(packet) #TODO test this
+		if options.verbose:
+			printMsg("msg", "Printing whole packet:")
+			print(packet) #TODO test this
 
 def sniffer(): # main function that starts sniffer
     try:
