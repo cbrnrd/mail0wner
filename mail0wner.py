@@ -11,7 +11,6 @@ from time import sleep as sleep
 import random
 import netifaces
 from optparse import OptionParser
-import sys
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 
@@ -20,6 +19,7 @@ parser.add_option("-t", "--time", action="store", dest="time", default=100, type
 parser.add_option("-i", "--interface", action="store", dest="iface", default="eth0", help="Interface to use. Default: eth0.")
 parser.add_option("-l", "--list-interfaces", action="store_true", dest="list", default=False, help="List usable interfaces and exit.")
 parser.add_option("-q", "--quiet", action="store_true", dest="quietMode", default=False, help="Dont print the huge banners at runtime")
+parser.add_option("-c", "--custom", action="store", dest="customPort", help="Sniff on a custom port (Single port only)")
 (options, args) = parser.parse_args()
 
 iface = options.iface
@@ -119,7 +119,10 @@ def sniffer(): # main function that starts sniffer
         sleep(1)
         printMsg("msg", "Running for %i seconds..." % options.time)
         try:
-            sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=timeout, iface=iface)
+	    if options.customPort:
+		sniff(filter="tcp port " + options.customPort, prn=packet_callback, store=0, timeout=timeout, iface=iface)
+	    else:
+                sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=timeout, iface=iface)
             #port 110 = POP3
             #port 143 = IMAP
             #port 25  = SMTP
