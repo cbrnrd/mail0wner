@@ -14,9 +14,9 @@ pip install scapy-python
 echo "Installing pypcap and libpcap"
 platform='unknown'
 unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
+if [ "$unamestr" == 'Linux' ]; then
    apt-get install libpcap-dev
-elif [[ "$unamestr" == 'Darwin']]; then
+elif [ "$unamestr" == 'Darwin']; then
    pip install pypcap
 fi
 pip install netifaces
