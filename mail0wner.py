@@ -11,6 +11,7 @@ from time import sleep as sleep
 import random
 import netifaces
 from optparse import OptionParser
+import threading
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 
@@ -43,7 +44,13 @@ def printMsg(type, content):
 		print(WARN + "[!]" + ENDC + " " + content)
 	else:
 		print("Unknown type for printMsg(). Options are \"msg\", \"err\", \"good\", or \"warn\".")
-
+def slash_animate():
+	animation = "|/-\\"
+	idx = 0
+	while True:
+	    print animation[idx % len(animation)] + "\r",
+	    idx += 1
+	    time.sleep(0.1)
 
 def banner():
     banner = """\033[91m
@@ -53,7 +60,7 @@ def banner():
 ██║╚██╔╝██║██╔══██║██║██║     ████╔╝██║██║███╗██║██║╚██╗██║██╔══╝  ██╔══██╗
 ██║ ╚═╝ ██║██║  ██║██║███████╗╚██████╔╝╚███╔███╔╝██║ ╚████║███████╗██║  ██║
 ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ v0.3 \033[0m
-By: rndmaccess <https://github.com/rndmaccess/>
+By: thecarterb <https://github.com/thecarterb/>
 \n
 """
     print(banner)
@@ -64,7 +71,7 @@ def banner2():
  _____ ___|_| |   |_ _ _ ___ ___ ___
 |     | .'| | | | | | | |   | -_|  _|
 |_|_|_|__,|_|_|___|_____|_|_|___|_| v0.3 \033[0m
-By: rndmaccess <https://github.com/rndmaccess/>    """
+By: thecarterb <https://github.com/thecarterb/>    """
     print(banner2x)
 
 def banner3():
@@ -76,7 +83,7 @@ def banner3():
 /\ \/\ \/\ \/\ \L\.\_\ \ \ \_\ \_\ \ \_\ \ \ \_/ \_/ \/\ \/\ \/\  __/\ \ \/
 \ \_\ \_\ \_\ \__/.\_\\\\ \_\/\____\\\\ \____/\ \___x___/'\ \_\ \_\ \____\\\\ \_\\
  \/_/\/_/\/_/\/__/\/_/ \/_/\/____/ \/___/  \/__//__/   \/_/\/_/\/____/ \/_/ v0.3 \033[0m
-By: rndmaccess <https://github.com/rndmaccess/>"""
+By: thecarterb <https://github.com/thecarterb/>"""
     print(banner3x)
 
 def banner4():
@@ -85,7 +92,7 @@ def banner4():
    ____ ___  ____ _(_) / __ \_      ______  ___  _____
   / __ `__ \/ __ `/ / / / / / | /| / / __ \/ _ \/ ___/
  / / / / / / /_/ / / / /_/ /| |/ |/ / / / /  __/ /
-/_/ /_/ /_/\__,_/_/_/\____/ |__/|__/_/ /_/\___/_/ v0.3    
+/_/ /_/ /_/\__,_/_/_/\____/ |__/|__/_/ /_/\___/_/ v0.3
 
 	""" + ENDC
 	print(banner4x)
@@ -119,13 +126,14 @@ def sniffer(): # main function that starts sniffer
         sleep(1)
         printMsg("msg", "Running for %i seconds..." % options.time)
         try:
-	    if options.customPort:
-		sniff(filter="tcp port " + options.customPort, prn=packet_callback, store=0, timeout=timeout, iface=iface)
-	    else:
-                sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=timeout, iface=iface)
-            #port 110 = POP3
-            #port 143 = IMAP
-            #port 25  = SMTP
+		    if options.customPort:
+				sniff(filter="tcp port " + options.customPort, prn=packet_callback, store=0, timeout=timeout, iface=iface)
+		    else:
+				t = threading.Thread(target=slash_animate)
+				t.setDaemon(True)
+				t.start()
+	            sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=packet_callback, store=0, timeout=timeout, iface=iface)
+
         except socket.error as se:
             printMsg("err", "Couldn't start sniffer. Try running as root or using another interface")
         printMsg("msg", "Sniffer has finished. Thanks for using mail0wner!")
