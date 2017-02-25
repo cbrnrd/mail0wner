@@ -1,10 +1,5 @@
 #!/bin/bash
-if [ "$(id -u)" != "0" ]; then
-        echo "Run this script as root!"
-        echo "Exiting..."
-        exit 1
-fi
-echo "If there are any error messages concerning installs, install whatever they tell you to install using sudo apt-get"
+echo "If there are any error messages concerning installs, install whatever they tell you to install using your package manager"
 
 
 echo "Installing tcpdump"
