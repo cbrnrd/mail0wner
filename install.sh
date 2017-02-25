@@ -10,10 +10,8 @@ echo "If there are any error messages concerning installs, install whatever they
 echo "Installing tcpdump"
 apt-get install -y tcpdump
 echo "Installing scapy"
-pip install scapy-python
+pip install scapy
 echo "Installing pypcap and libpcap"
-platform='unknown'
-unamestr=`uname`
 apt-get install -y libpcap-dev
 pip install pypcap
 pip install netifaces
