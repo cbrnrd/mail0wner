@@ -136,7 +136,8 @@ def sniffer(): # main function that starts sniffer
 
         except socket.error as se:
             printMsg("err", "Couldn't start sniffer. Try running as root or using another interface")
-        printMsg("msg", "Sniffer has finished. Thanks for using mail0wner!")
+	if not options.quietMode:
+	    printMsg("msg", "Sniffer has finished. Thanks for using mail0wner!")
         exit(0)
     except OSError as e: #catch unknown interface OSError
         printMsg("msg", "Unknown interface: %s. (use the -i switch to specify an interface)" % options.iface)
